@@ -77,6 +77,7 @@ Purpur / Pufferfish 等 Paper 分支按对应版本线装。**同一服只装一
 
 - **语言文件分两套**：paper 包用 MiniMessage（与 BasicTpCmd 现代线同格式），bukkit 包用 `&` 色码（与 BasicTpCmd legacy 线同格式）；升级只补缺失键，不覆盖你改过的文案。
 - **1.0.0 → 1.1.0 的 paper 语言迁移**：旧版 paper 语言文件是 `&` 色码，1.1.0 会在内存里转换成 MiniMessage 再渲染，不覆盖原文件；要彻底换成新模板，删掉 `plugins/BasicStatusCommand/lang/` 后重启即可。
+- **1.2.0 → 1.2.1 的输出变化**：所有消息统一带 `[BasicStatusCmd]` 前缀，`--------` 分割线移除；旧文件里的 `[BSC]` 前缀在内存中迁移并打一条 warning，标题键改为 `help.header`（旧 `help.title` 不再读取）。
 - **直接命令可能撞名**：`/ping`、`/top`、`/tps`、`/info` 比较通用，若已被其他插件注册，Bukkit 会跳过该命令并在控制台提示；先卸掉同名命令的插件。
 - **流量只统计玩家连接**：在玩家 Netty 通道挂计数 handler，列表 ping、控制台连接不计入；个别改过网络层的服务端可能提示「未接入通道」。
 - **bukkit 线 TPS 自采样**：逐 tick 记录时间戳回算窗口，刚起服时 5/15 分钟会显示「采样中」；paper 线直接读服务端 TPS，无暖机。
