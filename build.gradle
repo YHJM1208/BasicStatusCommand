@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'yhjm1208'
-version = '1.2.0'
+version = '1.2.1'
 
 // 每条版本线各出一个包：
 //   cmd /c "build.bat clean jar -Pmc=1.8.8"   -> bukkit（1.8.8 - 1.18.1）

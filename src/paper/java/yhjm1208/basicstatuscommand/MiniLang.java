@@ -94,7 +94,17 @@ public final class MiniLang implements Lang {
             plugin.getLogger().warning("读取语言文件失败：" + e.getMessage());
         }
 
-        this.prefix = messages.getString("prefix", "");
+        this.prefix = migratePrefix(messages.getString("prefix", ""));
+    }
+
+    /** 1.2.1 把默认前缀 [BSC] 改成 [BasicStatusCmd]；只改内存，保留玩家自定义颜色，不写回文件。 */
+    private String migratePrefix(String rawPrefix) {
+        if (rawPrefix.contains("BSC") && !rawPrefix.contains("BasicStatusCmd")) {
+            plugin.getLogger().warning("检测到旧版 BSC 前缀，已在内存中改为 [BasicStatusCmd]；"
+                    + "要自定义请修改 lang/" + language + ".yml 的 prefix");
+            return rawPrefix.replace("BSC", "BasicStatusCmd");
+        }
+        return rawPrefix;
     }
 
     @Override
@@ -161,11 +171,6 @@ public final class MiniLang implements Lang {
                 .append(mini.deserialize(prefix))
                 .append(mini.deserialize(str(key, placeholders)));
         sender.sendMessage(message);
-    }
-
-    @Override
-    public void line(CommandSender sender, String key, Object... placeholders) {
-        sender.sendMessage(mini.deserialize(str(key, placeholders)));
     }
 
     @Override

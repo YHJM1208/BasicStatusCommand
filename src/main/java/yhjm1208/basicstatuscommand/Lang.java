@@ -23,9 +23,6 @@ public interface Lang {
     /** 带插件前缀发送一条消息。 */
     void send(CommandSender sender, String key, Object... placeholders);
 
-    /** 不带前缀发送一行（表格、标题用）。 */
-    void line(CommandSender sender, String key, Object... placeholders);
-
     /** 语义色：good / warn / bad，按平台翻译成 &amp;a / &lt;green&gt; 等。 */
     String color(String tone);
 

@@ -166,22 +166,21 @@ public final class StatusCommand implements CommandExecutor, TabCompleter {
     }
 
     private void help(CommandSender sender) {
-        lang.line(sender, "help.title", "name", "BasicStatusCommand",
+        lang.send(sender, "help.header", "name", "BasicStatusCmd",
                 "version", plugin.getDescription().getVersion());
-        lang.line(sender, "help.entry", "command", ROOT,
+        lang.send(sender, "help.entry", "command", ROOT,
                 "desc", Lang.rawValue(lang.str("desc." + ROOT)));
         for (String[] entry : SUBS) {
             if (!canUse(sender, entry[1])) {
                 continue;
             }
-            lang.line(sender, "help.entry", "command", entry[0],
+            lang.send(sender, "help.entry", "command", entry[0],
                     "desc", Lang.rawValue(lang.str("desc." + entry[0])));
         }
         if (sender.hasPermission("basicstatuscmd.reload")) {
-            lang.line(sender, "help.reload", "command", ROOT,
+            lang.send(sender, "help.reload", "command", ROOT,
                     "desc", Lang.rawValue(lang.str("desc.reload")));
         }
-        lang.line(sender, "help.footer");
     }
 
     // ---------------------------------------------------------------- 网络
@@ -203,13 +202,12 @@ public final class StatusCommand implements CommandExecutor, TabCompleter {
         }
 
         int ping = platform.ping(target);
-        lang.line(sender, "ping.header");
         if (ping < 0) {
-            lang.line(sender, "ping.entry-unknown", "player", target.getName());
+            lang.send(sender, "ping.entry-unknown", "player", target.getName());
         } else {
-            lang.line(sender, "ping.entry-" + quality(ping), "player", target.getName(), "ping", ping);
+            lang.send(sender, "ping.entry-" + quality(ping), "player", target.getName(), "ping", ping);
         }
-        lang.line(sender, "ping.world", "world", target.getWorld().getName());
+        lang.send(sender, "ping.world", "world", target.getWorld().getName());
     }
 
     private String quality(int ping) {
@@ -244,18 +242,17 @@ public final class StatusCommand implements CommandExecutor, TabCompleter {
             final int channels = traffic.channels();
 
             Bukkit.getScheduler().runTask(plugin, () -> {
-                lang.line(sender, "traffic.header");
-                lang.line(sender, "traffic.line-window", "seconds", seconds, "channels", channels);
+                lang.send(sender, "traffic.line-window", "seconds", seconds, "channels", channels);
                 if (channels == 0) {
                     if (Bukkit.getOnlinePlayers().isEmpty()) {
-                        lang.line(sender, "traffic.no-players");
+                        lang.send(sender, "traffic.no-players");
                     } else {
-                        lang.line(sender, "traffic.no-channel");
+                        lang.send(sender, "traffic.no-channel");
                     }
                 }
-                lang.line(sender, "traffic.line-down", "rate", Fmt.rate(inRate), "packets", inPktRate);
-                lang.line(sender, "traffic.line-up", "rate", Fmt.rate(outRate), "packets", outPktRate);
-                lang.line(sender, "traffic.line-total",
+                lang.send(sender, "traffic.line-down", "rate", Fmt.rate(inRate), "packets", inPktRate);
+                lang.send(sender, "traffic.line-up", "rate", Fmt.rate(outRate), "packets", outPktRate);
+                lang.send(sender, "traffic.line-total",
                         "in", Fmt.bytes(end[1]), "out", Fmt.bytes(end[2]));
             });
         }, seconds * 20L);
@@ -270,14 +267,13 @@ public final class StatusCommand implements CommandExecutor, TabCompleter {
         players.sort((a, b) -> Integer.compare(platform.ping(b), platform.ping(a)));
 
         int limit = Math.min(Math.max(1, plugin.getConfig().getInt("top.size", 5)), players.size());
-        lang.line(sender, "top.header", "size", limit);
         for (int i = 0; i < limit; i++) {
             Player player = players.get(i);
             int ping = platform.ping(player);
             if (ping < 0) {
-                lang.line(sender, "top.entry-unknown", "rank", i + 1, "player", player.getName());
+                lang.send(sender, "top.entry-unknown", "rank", i + 1, "player", player.getName());
             } else {
-                lang.line(sender, "top.entry-" + quality(ping), "rank", i + 1,
+                lang.send(sender, "top.entry-" + quality(ping), "rank", i + 1,
                         "player", player.getName(), "ping", ping);
             }
         }
@@ -286,11 +282,10 @@ public final class StatusCommand implements CommandExecutor, TabCompleter {
     // ---------------------------------------------------------------- 性能
 
     private void tps(CommandSender sender) {
-        lang.line(sender, "tps.header");
         double[] tps = platform.tps();
         double[] coverage = platform.tpsCoverage();
         if (tps == null) {
-            lang.line(sender, "tps.native-missing");
+            lang.send(sender, "tps.native-missing");
             return;
         }
 
@@ -305,99 +300,94 @@ public final class StatusCommand implements CommandExecutor, TabCompleter {
             any = true;
             double covered = coverage != null && i < coverage.length ? coverage[i] : Double.NaN;
             if (!Double.isNaN(covered) && covered < windows[i] - 1.0) {
-                lang.line(sender, "tps.warming", "label", Lang.rawValue(lang.str(labels[i])),
+                lang.send(sender, "tps.warming", "label", Lang.rawValue(lang.str(labels[i])),
                         "seconds", Math.max(0, Math.round(covered)));
             } else {
-                lang.line(sender, "tps.line", "label", Lang.rawValue(lang.str(labels[i])),
+                lang.send(sender, "tps.line", "label", Lang.rawValue(lang.str(labels[i])),
                         "color", Lang.rawValue(lang.color(Fmt.toneForTps(value))), "value", Fmt.tps(value));
             }
         }
         if (!any) {
-            lang.line(sender, "tps.collecting");
+            lang.send(sender, "tps.collecting");
         }
 
         double mspt = platform.mspt();
         if (!Double.isNaN(mspt)) {
             String tone = mspt >= 50.0 ? "bad" : (mspt >= 25.0 ? "warn" : "good");
-            lang.line(sender, "tps.mspt", "color", Lang.rawValue(lang.color(tone)), "value", Fmt.ms(mspt));
+            lang.send(sender, "tps.mspt", "color", Lang.rawValue(lang.color(tone)), "value", Fmt.ms(mspt));
         }
     }
 
     private void cpu(CommandSender sender) {
-        lang.line(sender, "cpu.header");
         double process = Jvm.processCpuLoad();
         if (process < 0) {
-            lang.line(sender, "cpu.unavailable", "label", Lang.rawValue(lang.str("cpu.label-process")));
+            lang.send(sender, "cpu.unavailable", "label", Lang.rawValue(lang.str("cpu.label-process")));
         } else {
-            lang.line(sender, "cpu.process", "color", Lang.rawValue(lang.color(Fmt.toneForPercent(process))),
+            lang.send(sender, "cpu.process", "color", Lang.rawValue(lang.color(Fmt.toneForPercent(process))),
                     "value", String.format(Locale.ROOT, "%.1f", process));
         }
         double system = Jvm.systemCpuLoad();
         if (system < 0) {
-            lang.line(sender, "cpu.unavailable", "label", Lang.rawValue(lang.str("cpu.label-system")));
+            lang.send(sender, "cpu.unavailable", "label", Lang.rawValue(lang.str("cpu.label-system")));
         } else {
-            lang.line(sender, "cpu.system", "color", Lang.rawValue(lang.color(Fmt.toneForPercent(system))),
+            lang.send(sender, "cpu.system", "color", Lang.rawValue(lang.color(Fmt.toneForPercent(system))),
                     "value", String.format(Locale.ROOT, "%.1f", system));
         }
-        lang.line(sender, "cpu.cores", "value", Jvm.processors());
+        lang.send(sender, "cpu.cores", "value", Jvm.processors());
         double load = Jvm.systemLoadAverage();
         if (load >= 0) {
-            lang.line(sender, "cpu.load", "value", String.format(Locale.ROOT, "%.2f", load));
+            lang.send(sender, "cpu.load", "value", String.format(Locale.ROOT, "%.2f", load));
         }
     }
 
     private void memory(CommandSender sender) {
-        lang.line(sender, "mem.header");
         long[] heap = Jvm.heap();
         long max = heap[2] > 0 ? heap[2] : heap[1];
         double percent = max > 0 ? heap[0] * 100.0 / max : 0.0;
-        lang.line(sender, "mem.heap", "color", Lang.rawValue(lang.color(Fmt.toneForPercent(percent))),
+        lang.send(sender, "mem.heap", "color", Lang.rawValue(lang.color(Fmt.toneForPercent(percent))),
                 "used", Fmt.bytes(heap[0]), "max", Fmt.bytes(max),
                 "percent", String.format(Locale.ROOT, "%.1f", percent));
-        lang.line(sender, "mem.nonheap", "used", Fmt.bytes(Jvm.nonHeapUsed()));
+        lang.send(sender, "mem.nonheap", "used", Fmt.bytes(Jvm.nonHeapUsed()));
 
         long[] physical = Jvm.physicalMemory();
         if (physical[0] > 0) {
             long used = physical[0] - physical[1];
             double physicalPercent = used * 100.0 / physical[0];
-            lang.line(sender, "mem.physical", "used", Fmt.bytes(used),
+            lang.send(sender, "mem.physical", "used", Fmt.bytes(used),
                     "total", Fmt.bytes(physical[0]),
                     "percent", String.format(Locale.ROOT, "%.1f", physicalPercent));
         }
     }
 
     private void gc(CommandSender sender) {
-        lang.line(sender, "gc.header");
         long count = 0L;
         long time = 0L;
         for (Jvm.Gc collector : Jvm.gc()) {
-            lang.line(sender, "gc.entry", "name", collector.name,
+            lang.send(sender, "gc.entry", "name", collector.name,
                     "count", collector.count, "time", collector.timeMs);
             count += collector.count;
             time += collector.timeMs;
         }
         long uptime = Math.max(1L, Jvm.uptimeMillis());
         double percent = time * 100.0 / uptime;
-        lang.line(sender, "gc.total", "count", count, "time", time,
+        lang.send(sender, "gc.total", "count", count, "time", time,
                 "percent", String.format(Locale.ROOT, "%.2f", percent));
     }
 
     private void threads(CommandSender sender) {
-        lang.line(sender, "thread.header");
         int[] values = Jvm.threads();
-        lang.line(sender, "thread.live", "value", values[0]);
-        lang.line(sender, "thread.peak", "value", values[1]);
-        lang.line(sender, "thread.daemon", "value", values[2]);
-        lang.line(sender, "thread.started", "value", values[3]);
+        lang.send(sender, "thread.live", "value", values[0]);
+        lang.send(sender, "thread.peak", "value", values[1]);
+        lang.send(sender, "thread.daemon", "value", values[2]);
+        lang.send(sender, "thread.started", "value", values[3]);
     }
 
     // ---------------------------------------------------------------- 生态
 
     private void entity(CommandSender sender) {
-        lang.line(sender, "entity.header");
         EntitySnapshot snapshot = WorldStats.entities();
-        lang.line(sender, "entity.total", "value", snapshot.total);
-        lang.line(sender, "entity.category",
+        lang.send(sender, "entity.total", "value", snapshot.total);
+        lang.send(sender, "entity.category",
                 "monster", value(snapshot.categories, WorldStats.MONSTER),
                 "animals", value(snapshot.categories, WorldStats.ANIMALS),
                 "water", value(snapshot.categories, WorldStats.WATER),
@@ -409,65 +399,61 @@ public final class StatusCommand implements CommandExecutor, TabCompleter {
         int shown = 0;
         for (WorldStats.WorldEntities world : snapshot.worlds) {
             if (shown >= max) {
-                lang.line(sender, "entity.more-worlds", "count", snapshot.worlds.size() - shown);
+                lang.send(sender, "entity.more-worlds", "count", snapshot.worlds.size() - shown);
                 break;
             }
             shown++;
             int monster = value(world.categories, WorldStats.MONSTER);
             int animals = value(world.categories, WorldStats.ANIMALS);
-            lang.line(sender, "entity.world", "world", world.world, "total", world.total,
+            lang.send(sender, "entity.world", "world", world.world, "total", world.total,
                     "monster", monster, "animals", animals, "other", world.total - monster - animals);
         }
     }
 
     private void chunk(CommandSender sender) {
-        lang.line(sender, "chunk.header");
         WorldStats.ChunkSnapshot snapshot = WorldStats.chunks();
-        lang.line(sender, "chunk.total", "value", snapshot.total);
+        lang.send(sender, "chunk.total", "value", snapshot.total);
         for (WorldStats.WorldChunks world : snapshot.worlds) {
-            lang.line(sender, "chunk.world", "world", world.world, "value", world.loaded);
+            lang.send(sender, "chunk.world", "world", world.world, "value", world.loaded);
         }
     }
 
     // ---------------------------------------------------------------- 系统
 
     private void info(CommandSender sender) {
-        lang.line(sender, "info.header");
-        lang.line(sender, "info.server", "name", Bukkit.getName());
-        lang.line(sender, "info.version", "version", Bukkit.getVersion());
-        lang.line(sender, "info.bukkit", "version", Bukkit.getBukkitVersion());
-        lang.line(sender, "info.players",
+        lang.send(sender, "info.server", "name", Bukkit.getName());
+        lang.send(sender, "info.version", "version", Bukkit.getVersion());
+        lang.send(sender, "info.bukkit", "version", Bukkit.getBukkitVersion());
+        lang.send(sender, "info.players",
                 "online", Bukkit.getOnlinePlayers().size(), "max", Bukkit.getMaxPlayers());
-        lang.line(sender, "info.worlds",
+        lang.send(sender, "info.worlds",
                 "worlds", Bukkit.getWorlds().size(),
                 "plugins", Bukkit.getPluginManager().getPlugins().length);
-        lang.line(sender, "info.uptime", "value", Fmt.duration(Jvm.uptimeMillis()));
-        lang.line(sender, "info.java",
+        lang.send(sender, "info.uptime", "value", Fmt.duration(Jvm.uptimeMillis()));
+        lang.send(sender, "info.java",
                 "version", System.getProperty("java.version", "?"),
                 "vendor", System.getProperty("java.vendor", "?"));
     }
 
     private void env(CommandSender sender) {
-        lang.line(sender, "env.header");
-        lang.line(sender, "env.java",
+        lang.send(sender, "env.java",
                 "version", System.getProperty("java.version", "?"),
                 "vendor", System.getProperty("java.vendor", "?"));
-        lang.line(sender, "env.vm",
+        lang.send(sender, "env.vm",
                 "name", System.getProperty("java.vm.name", "?"),
                 "version", System.getProperty("java.vm.version", "?"));
-        lang.line(sender, "env.os",
+        lang.send(sender, "env.os",
                 "name", System.getProperty("os.name", "?"),
                 "arch", System.getProperty("os.arch", "?"),
                 "version", System.getProperty("os.version", "?"));
-        lang.line(sender, "env.cores", "value", Jvm.processors());
-        lang.line(sender, "env.misc",
+        lang.send(sender, "env.cores", "value", Jvm.processors());
+        lang.send(sender, "env.misc",
                 "encoding", System.getProperty("file.encoding", "?"),
                 "timezone", System.getProperty("user.timezone", "?"));
-        lang.line(sender, "env.dir", "value", serverDir());
+        lang.send(sender, "env.dir", "value", serverDir());
     }
 
     private void disk(CommandSender sender) {
-        lang.line(sender, "disk.header");
         long warnMb = Math.max(1L, plugin.getConfig().getLong("check.disk-free-warn-mb", 2048L));
         for (File root : File.listRoots()) {
             long total = root.getTotalSpace();
@@ -477,12 +463,12 @@ public final class StatusCommand implements CommandExecutor, TabCompleter {
             long free = root.getUsableSpace();
             long freeMb = free / (1024L * 1024L);
             String tone = freeMb < warnMb / 2 ? "bad" : (freeMb < warnMb ? "warn" : "good");
-            lang.line(sender, "disk.root", "root", root.getPath(),
+            lang.send(sender, "disk.root", "root", root.getPath(),
                     "free", Fmt.bytes(free), "total", Fmt.bytes(total),
                     "color", Lang.rawValue(lang.color(tone)), "percent", String.format(Locale.ROOT, "%.1f",
                             (total - free) * 100.0 / total));
         }
-        lang.line(sender, "disk.data", "path", serverDir());
+        lang.send(sender, "disk.data", "path", serverDir());
     }
 
     /** 服务端根目录，去掉 getAbsolutePath() 末尾的 {@code \.} 。 */
@@ -494,7 +480,6 @@ public final class StatusCommand implements CommandExecutor, TabCompleter {
     // ---------------------------------------------------------------- 巡检
 
     private void check(CommandSender sender) {
-        lang.line(sender, "check.header");
         int checks = 0;
         int issues = 0;
 
@@ -581,9 +566,9 @@ public final class StatusCommand implements CommandExecutor, TabCompleter {
                 lang.str("check.threshold", "value", String.format(Locale.ROOT, "%.0f%%", gcWarn)));
 
         if (issues == 0) {
-            lang.line(sender, "check.summary-ok", "count", checks);
+            lang.send(sender, "check.summary-ok", "count", checks);
         } else {
-            lang.line(sender, "check.summary-warn", "count", issues);
+            lang.send(sender, "check.summary-warn", "count", issues);
         }
     }
 
@@ -595,7 +580,7 @@ public final class StatusCommand implements CommandExecutor, TabCompleter {
             text = value + " " + note;
         }
         // value / note 里可能已经带平台标记（label、threshold 是先翻译过的），用 Raw 避免二次转义
-        lang.line(sender, "check.item", "status", Lang.rawValue(icon),
+        lang.send(sender, "check.item", "status", Lang.rawValue(icon),
                 "label", Lang.rawValue(label), "value", Lang.rawValue(text));
     }
 

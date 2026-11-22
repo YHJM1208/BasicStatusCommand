@@ -4,7 +4,7 @@
 # Hex colors: #RRGGBB, for example <#ff8800>
 # Placeholders use braces: {player} {ping} {value} {seconds} ...
 
-prefix: "<gray>[<aqua>BSC</aqua>]</gray> "
+prefix: "<gray>[<aqua>BasicStatusCmd</aqua>]</gray> "
 
 general:
   no-permission: "<red>You do not have permission to use this command.</red>"
@@ -14,10 +14,9 @@ general:
   reloaded: "<green>Config and language files reloaded.</green>"
 
 help:
-  title: "<dark_gray>--------</dark_gray> <aqua>{name} {version}</aqua> <dark_gray>--------</dark_gray>"
+  header: "<aqua>{version}</aqua>"
   entry: "<gray>/{command}</gray> <dark_gray>-</dark_gray> <gray>{desc}</gray>"
   reload: "<gray>/{command} reload</gray> <dark_gray>-</dark_gray> <gray>{desc}</gray>"
-  footer: "<dark_gray>--------------------------------</dark_gray>"
 
 desc:
   basicstatuscmd: "Show the status command list"
@@ -38,7 +37,6 @@ desc:
   check: "Run a one-shot health check"
 
 ping:
-  header: "<dark_gray>--------</dark_gray> <aqua>Latency</aqua> <dark_gray>--------</dark_gray>"
   entry-good: "<gray>{player} <dark_gray>-</dark_gray> <green>{ping} ms</green> <dark_gray>(<green>Good</green>)</dark_gray>"
   entry-medium: "<gray>{player} <dark_gray>-</dark_gray> <yellow>{ping} ms</yellow> <dark_gray>(<yellow>Fair</yellow>)</dark_gray>"
   entry-bad: "<gray>{player} <dark_gray>-</dark_gray> <red>{ping} ms</red> <dark_gray>(<red>Poor</red>)</dark_gray>"
@@ -46,7 +44,6 @@ ping:
   world: "<gray>World: <white>{world}</white></gray>"
 
 traffic:
-  header: "<dark_gray>--------</dark_gray> <aqua>Traffic</aqua> <dark_gray>--------</dark_gray>"
   sampling: "<gray>Sampling for <white>{seconds}</white> seconds...</gray>"
   line-window: "<gray>Window: <white>{seconds}s</white> <dark_gray>|</dark_gray> Channels: <white>{channels}</white></gray>"
   line-down: "<gray>Down: <green>{rate}</green> <dark_gray>(<white>{packets}</white> pkt/s)</dark_gray></gray>"
@@ -56,7 +53,6 @@ traffic:
   no-channel: "<yellow>No player channel was instrumented (this server may use a different Netty layout); showing zeros.</yellow>"
 
 top:
-  header: "<dark_gray>--------</dark_gray> <aqua>Latency Top {size}</aqua> <dark_gray>--------</dark_gray>"
   entry-good: "<gray>#{rank} <white>{player}</white> <dark_gray>-</dark_gray> <green>{ping} ms</green></gray>"
   entry-medium: "<gray>#{rank} <white>{player}</white> <dark_gray>-</dark_gray> <yellow>{ping} ms</yellow></gray>"
   entry-bad: "<gray>#{rank} <white>{player}</white> <dark_gray>-</dark_gray> <red>{ping} ms</red></gray>"
@@ -64,7 +60,6 @@ top:
   empty: "<gray>No players are online.</gray>"
 
 tps:
-  header: "<dark_gray>--------</dark_gray> <aqua>TPS</aqua> <dark_gray>--------</dark_gray>"
   label-1m: "1 minute"
   label-5m: "5 minutes"
   label-15m: "15 minutes"
@@ -75,7 +70,6 @@ tps:
   mspt: "<gray>MSPT: </gray>{color}{value} ms"
 
 cpu:
-  header: "<dark_gray>--------</dark_gray> <aqua>CPU</aqua> <dark_gray>--------</dark_gray>"
   label-process: "Process CPU"
   label-system: "System CPU"
   process: "<gray>Process CPU: </gray>{color}{value}%"
@@ -85,37 +79,31 @@ cpu:
   unavailable: "<gray>{label}: <dark_gray>unavailable</dark_gray></gray>"
 
 mem:
-  header: "<dark_gray>--------</dark_gray> <aqua>Memory</aqua> <dark_gray>--------</dark_gray>"
   heap: "<gray>Heap: {color}{used} <gray>/</gray> <white>{max}</white> <dark_gray>({color}{percent}%</dark_gray>)</gray>"
   nonheap: "<gray>Non-heap: <white>{used}</white></gray>"
   physical: "<gray>Physical: <white>{used}</white> <gray>/</gray> <white>{total}</white> <dark_gray>({percent}%)</dark_gray></gray>"
 
 gc:
-  header: "<dark_gray>--------</dark_gray> <aqua>GC</aqua> <dark_gray>--------</dark_gray>"
   entry: "<gray>{name}: <white>{count} collections</white> <gray>/</gray> <white>{time} ms</white></gray>"
   total: "<gray>Total: <white>{count} collections</white> <gray>/</gray> <white>{time} ms</white> <dark_gray>({percent}% of uptime)</dark_gray></gray>"
 
 thread:
-  header: "<dark_gray>--------</dark_gray> <aqua>Threads</aqua> <dark_gray>--------</dark_gray>"
   live: "<gray>Live threads: <white>{value}</white></gray>"
   peak: "<gray>Peak threads: <white>{value}</white></gray>"
   daemon: "<gray>Daemon threads: <white>{value}</white></gray>"
   started: "<gray>Started: <white>{value}</white></gray>"
 
 entity:
-  header: "<dark_gray>--------</dark_gray> <aqua>Entities</aqua> <dark_gray>--------</dark_gray>"
   total: "<gray>Total entities: <white>{value}</white></gray>"
   category: "<gray>By category: <red>Monster {monster}</red> <gray>|</gray> <green>Animals {animals}</green> <gray>|</gray> <aqua>Water {water}</aqua> <gray>|</gray> <yellow>Villager {villager}</yellow> <gray>|</gray> <gray>Other {other}</gray></gray>"
   world: "<gray>{world}: <white>{total}</white> <dark_gray>(</dark_gray><red>M {monster}</red> <gray>/</gray> <green>A {animals}</green> <gray>/</gray> <gray>O {other}</gray><dark_gray>)</dark_gray></gray>"
   more-worlds: "<gray>... {count} more worlds not shown</gray>"
 
 chunk:
-  header: "<dark_gray>--------</dark_gray> <aqua>Chunks</aqua> <dark_gray>--------</dark_gray>"
   total: "<gray>Loaded chunks: <white>{value}</white></gray>"
   world: "<gray>{world}: <white>{value}</white></gray>"
 
 info:
-  header: "<dark_gray>--------</dark_gray> <aqua>Server Info</aqua> <dark_gray>--------</dark_gray>"
   server: "<gray>Server: <white>{name}</white></gray>"
   version: "<gray>Version: <white>{version}</white></gray>"
   bukkit: "<gray>Bukkit: <white>{version}</white></gray>"
@@ -125,7 +113,6 @@ info:
   java: "<gray>JVM: <white>{version}</white> <dark_gray>({vendor})</dark_gray></gray>"
 
 env:
-  header: "<dark_gray>--------</dark_gray> <aqua>Environment</aqua> <dark_gray>--------</dark_gray>"
   java: "<gray>Java: <white>{version}</white> <dark_gray>({vendor})</dark_gray></gray>"
   vm: "<gray>VM: <white>{name}</white> <dark_gray>({version})</dark_gray></gray>"
   os: "<gray>OS: <white>{name}</white> <dark_gray>({arch})</dark_gray> <white>{version}</white></gray>"
@@ -134,12 +121,10 @@ env:
   dir: "<gray>Server dir: <white>{value}</white></gray>"
 
 disk:
-  header: "<dark_gray>--------</dark_gray> <aqua>Disk</aqua> <dark_gray>--------</dark_gray>"
   root: "<gray>{root} <dark_gray>free</dark_gray> {color}{free}<dark_gray> / </dark_gray><white>{total}</white> <dark_gray>({percent}% used)</dark_gray></gray>"
   data: "<gray>Server dir: <white>{path}</white></gray>"
 
 check:
-  header: "<dark_gray>--------</dark_gray> <aqua>Health Check</aqua> <dark_gray>--------</dark_gray>"
   ok: "<green>OK</green>"
   warn: "<yellow>!</yellow>"
   fail: "<red>X</red>"

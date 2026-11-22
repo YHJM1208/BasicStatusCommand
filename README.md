@@ -13,12 +13,12 @@
 
 | 服务端核心 | MC 版本 | Java | 用哪个包 |
 |---|---|---|---|
-| CraftBukkit / Spigot | 1.8.8 – 1.18.1 | 8+ | `BasicStatusCommand-1.2.0-bukkit-1.8.8-1.18.1.jar` |
-| Paper | 1.18.2 | 17+ | `BasicStatusCommand-1.2.0-paper-1.18.2.jar` |
-| Paper | 1.19 – 1.19.4 | 17+ | `BasicStatusCommand-1.2.0-paper-1.19-1.19.4.jar` |
-| Paper | 1.20 – 1.20.6 | 17+ | `BasicStatusCommand-1.2.0-paper-1.20-1.20.6.jar` |
-| Paper | 1.21 – 1.21.11 | 21+ | `BasicStatusCommand-1.2.0-paper-1.21-1.21.11.jar` |
-| Paper | 26.3 | 25+ | `BasicStatusCommand-1.2.0-paper-26.3.jar` |
+| CraftBukkit / Spigot | 1.8.8 – 1.18.1 | 8+ | `BasicStatusCommand-1.2.1-bukkit-1.8.8-1.18.1.jar` |
+| Paper | 1.18.2 | 17+ | `BasicStatusCommand-1.2.1-paper-1.18.2.jar` |
+| Paper | 1.19 – 1.19.4 | 17+ | `BasicStatusCommand-1.2.1-paper-1.19-1.19.4.jar` |
+| Paper | 1.20 – 1.20.6 | 17+ | `BasicStatusCommand-1.2.1-paper-1.20-1.20.6.jar` |
+| Paper | 1.21 – 1.21.11 | 21+ | `BasicStatusCommand-1.2.1-paper-1.21-1.21.11.jar` |
+| Paper | 26.3 | 25+ | `BasicStatusCommand-1.2.1-paper-26.3.jar` |
 
 Purpur / Pufferfish 等 Paper 分支按对应版本线装。**同一服只装一个包**，多个包同时放会因同名插件冲突。
 
@@ -85,7 +85,7 @@ Purpur / Pufferfish 等 Paper 分支按对应版本线装。**同一服只装一
 
 ## 更新日志
 
-1.2.0：按 Paper 版本线补全分包（1.18.2 / 1.19 / 1.20 / 1.21 / 26.3，各用该线最低 paper-api 编译），命令、权限、配置与数据格式不变，可直接替换 1.1.0。历史见 [CHANGELOG.md](CHANGELOG.md)。
+1.2.1：输出前缀统一为 `[BasicStatusCmd]`，去掉所有 `--------` 分割线，每条输出都带前缀；启用日志改为 `BasicStatusCmd 已启用，语言 = zh_CN`。命令、权限、配置与数据格式不变。历史见 [CHANGELOG.md](CHANGELOG.md)。
 
 ## 许可与来源
 

@@ -2,7 +2,7 @@
 # legacy 线使用 & 传统色码（1.8.8 – 1.18.1 统一走 bukkit 包）
 # 占位符用大括号，例如 {player} {ping} {value} {seconds}
 
-prefix: "&8[&bBSC&8] &r"
+prefix: "&8[&bBasicStatusCmd&8] &r"
 
 general:
   no-permission: "&c你没有权限执行该命令。"
@@ -12,10 +12,9 @@ general:
   reloaded: "&a配置与语言文件已重新加载。"
 
 help:
-  title: "&8&m--------&r &b{name} {version} &8&m--------"
+  header: "&b{version}"
   entry: "&8/&f{command} &8- &7{desc}"
   reload: "&8/&f{command} reload &8- &7{desc}"
-  footer: "&8&m--------------------------------"
 
 desc:
   basicstatuscmd: "显示状态命令列表"
@@ -36,7 +35,6 @@ desc:
   check: "一键巡检服务器隐患并报告异常"
 
 ping:
-  header: "&8&m--------&r &b延迟 &8&m--------"
   entry-good: "&7{player} &8- &a{ping} ms &8(&a良好&8)"
   entry-medium: "&7{player} &8- &e{ping} ms &8(&e一般&8)"
   entry-bad: "&7{player} &8- &c{ping} ms &8(&c较差&8)"
@@ -44,7 +42,6 @@ ping:
   world: "&7所在世界: &f{world}"
 
 traffic:
-  header: "&8&m--------&r &b流量 &8&m--------"
   sampling: "&7正在采样 &f{seconds} &7秒，请稍候……"
   line-window: "&7采样窗口: &f{seconds} 秒 &8| &7已接入通道: &f{channels}"
   line-down: "&7下行: &a{rate} &8(&f{packets} pkt/s&8)"
@@ -54,7 +51,6 @@ traffic:
   no-channel: "&e未接入任何玩家通道（该服务端可能改动了 Netty 结构），当前只能按 0 统计。"
 
 top:
-  header: "&8&m--------&r &b延迟 Top {size} &8&m--------"
   entry-good: "&7#{rank} &f{player} &8- &a{ping} ms"
   entry-medium: "&7#{rank} &f{player} &8- &e{ping} ms"
   entry-bad: "&7#{rank} &f{player} &8- &c{ping} ms"
@@ -62,7 +58,6 @@ top:
   empty: "&7当前没有在线玩家。"
 
 tps:
-  header: "&8&m--------&r &bTPS &8&m--------"
   label-1m: "1 分钟"
   label-5m: "5 分钟"
   label-15m: "15 分钟"
@@ -73,7 +68,6 @@ tps:
   mspt: "&7MSPT: {color}{value} ms"
 
 cpu:
-  header: "&8&m--------&r &bCPU &8&m--------"
   label-process: "进程 CPU"
   label-system: "系统 CPU"
   process: "&7进程 CPU: {color}{value}%"
@@ -83,37 +77,31 @@ cpu:
   unavailable: "&7{label}: &8不可用"
 
 mem:
-  header: "&8&m--------&r &b内存 &8&m--------"
   heap: "&7堆内存: {color}{used} &7/ &f{max} &8({color}{percent}%&8)"
   nonheap: "&7非堆内存: &f{used}"
   physical: "&7物理内存: &f{used} &7/ &f{total} &8({percent}%&8)"
 
 gc:
-  header: "&8&m--------&r &bGC &8&m--------"
   entry: "&7{name}: &f{count} 次 &7/ &f{time} ms"
   total: "&7合计: &f{count} 次 &7/ &f{time} ms &8({percent}% 运行时间&8)"
 
 thread:
-  header: "&8&m--------&r &b线程 &8&m--------"
   live: "&7活跃线程: &f{value}"
   peak: "&7峰值线程: &f{value}"
   daemon: "&7守护线程: &f{value}"
   started: "&7累计创建: &f{value}"
 
 entity:
-  header: "&8&m--------&r &b实体 &8&m--------"
   total: "&7实体总数: &f{value}"
   category: "&7全服分类: &c怪物 {monster} &7| &a动物 {animals} &7| &b水生 {water} &7| &e村民 {villager} &7| &7其他 {other}"
   world: "&7{world}: &f{total} &8(&c怪 {monster} &8/ &a动物 {animals} &8/ &7其他 {other}&8)"
   more-worlds: "&7……其余 &f{count} &7个世界未显示"
 
 chunk:
-  header: "&8&m--------&r &b区块 &8&m--------"
   total: "&7已加载区块: &f{value}"
   world: "&7{world}: &f{value}"
 
 info:
-  header: "&8&m--------&r &b服务器信息 &8&m--------"
   server: "&7服务端: &f{name}"
   version: "&7版本: &f{version}"
   bukkit: "&7Bukkit: &f{version}"
@@ -123,7 +111,6 @@ info:
   java: "&7JVM: &f{version} &8({vendor}&8)"
 
 env:
-  header: "&8&m--------&r &b运行环境 &8&m--------"
   java: "&7Java: &f{version} &8({vendor}&8)"
   vm: "&7虚拟机: &f{name} &8({version}&8)"
   os: "&7系统: &f{name} &8({arch}&8) &f{version}"
@@ -132,12 +119,10 @@ env:
   dir: "&7服务器目录: &f{value}"
 
 disk:
-  header: "&8&m--------&r &b磁盘 &8&m--------"
   root: "&7{root} &8可用 {color}{free} &8/ &f{total} &8({percent}% 已用&8)"
   data: "&7服务器目录: &f{path}"
 
 check:
-  header: "&8&m--------&r &b巡检 &8&m--------"
   ok: "&a√"
   warn: "&e!"
   fail: "&c×"

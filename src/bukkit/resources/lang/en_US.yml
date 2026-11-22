@@ -2,7 +2,7 @@
 # The legacy line uses & color codes (1.8.8 - 1.18.1, bukkit jar)
 # Placeholders use braces: {player} {ping} {value} {seconds} ...
 
-prefix: "&8[&bBSC&8] &r"
+prefix: "&8[&bBasicStatusCmd&8] &r"
 
 general:
   no-permission: "&cYou do not have permission to use this command."
@@ -12,10 +12,9 @@ general:
   reloaded: "&aConfig and language files reloaded."
 
 help:
-  title: "&8&m--------&r &b{name} {version} &8&m--------"
+  header: "&b{version}"
   entry: "&8/&f{command} &8- &7{desc}"
   reload: "&8/&f{command} reload &8- &7{desc}"
-  footer: "&8&m--------------------------------"
 
 desc:
   basicstatuscmd: "Show the status command list"
@@ -36,7 +35,6 @@ desc:
   check: "Run a one-shot health check"
 
 ping:
-  header: "&8&m--------&r &bLatency &8&m--------"
   entry-good: "&7{player} &8- &a{ping} ms &8(&aGood&8)"
   entry-medium: "&7{player} &8- &e{ping} ms &8(&eFair&8)"
   entry-bad: "&7{player} &8- &c{ping} ms &8(&cPoor&8)"
@@ -44,7 +42,6 @@ ping:
   world: "&7World: &f{world}"
 
 traffic:
-  header: "&8&m--------&r &bTraffic &8&m--------"
   sampling: "&7Sampling for &f{seconds} &7seconds..."
   line-window: "&7Window: &f{seconds}s &8| &7Channels: &f{channels}"
   line-down: "&7Down: &a{rate} &8(&f{packets} pkt/s&8)"
@@ -54,7 +51,6 @@ traffic:
   no-channel: "&eNo player channel was instrumented (this server may use a different Netty layout); showing zeros."
 
 top:
-  header: "&8&m--------&r &bLatency Top {size} &8&m--------"
   entry-good: "&7#{rank} &f{player} &8- &a{ping} ms"
   entry-medium: "&7#{rank} &f{player} &8- &e{ping} ms"
   entry-bad: "&7#{rank} &f{player} &8- &c{ping} ms"
@@ -62,7 +58,6 @@ top:
   empty: "&7No players are online."
 
 tps:
-  header: "&8&m--------&r &bTPS &8&m--------"
   label-1m: "1 minute"
   label-5m: "5 minutes"
   label-15m: "15 minutes"
@@ -73,7 +68,6 @@ tps:
   mspt: "&7MSPT: {color}{value} ms"
 
 cpu:
-  header: "&8&m--------&r &bCPU &8&m--------"
   label-process: "Process CPU"
   label-system: "System CPU"
   process: "&7Process CPU: {color}{value}%"
@@ -83,37 +77,31 @@ cpu:
   unavailable: "&7{label}: &8unavailable"
 
 mem:
-  header: "&8&m--------&r &bMemory &8&m--------"
   heap: "&7Heap: {color}{used} &7/ &f{max} &8({color}{percent}%&8)"
   nonheap: "&7Non-heap: &f{used}"
   physical: "&7Physical: &f{used} &7/ &f{total} &8({percent}%&8)"
 
 gc:
-  header: "&8&m--------&r &bGC &8&m--------"
   entry: "&7{name}: &f{count} collections &7/ &f{time} ms"
   total: "&7Total: &f{count} collections &7/ &f{time} ms &8({percent}% of uptime&8)"
 
 thread:
-  header: "&8&m--------&r &bThreads &8&m--------"
   live: "&7Live threads: &f{value}"
   peak: "&7Peak threads: &f{value}"
   daemon: "&7Daemon threads: &f{value}"
   started: "&7Started: &f{value}"
 
 entity:
-  header: "&8&m--------&r &bEntities &8&m--------"
   total: "&7Total entities: &f{value}"
   category: "&7By category: &cMonster {monster} &7| &aAnimals {animals} &7| &bWater {water} &7| &eVillager {villager} &7| &7Other {other}"
   world: "&7{world}: &f{total} &8(&cM {monster} &8/ &aA {animals} &8/ &7O {other}&8)"
   more-worlds: "&7... {count} more worlds not shown"
 
 chunk:
-  header: "&8&m--------&r &bChunks &8&m--------"
   total: "&7Loaded chunks: &f{value}"
   world: "&7{world}: &f{value}"
 
 info:
-  header: "&8&m--------&r &bServer Info &8&m--------"
   server: "&7Server: &f{name}"
   version: "&7Version: &f{version}"
   bukkit: "&7Bukkit: &f{version}"
@@ -123,7 +111,6 @@ info:
   java: "&7JVM: &f{version} &8({vendor}&8)"
 
 env:
-  header: "&8&m--------&r &bEnvironment &8&m--------"
   java: "&7Java: &f{version} &8({vendor}&8)"
   vm: "&7VM: &f{name} &8({version}&8)"
   os: "&7OS: &f{name} &8({arch}&8) &f{version}"
@@ -132,12 +119,10 @@ env:
   dir: "&7Server dir: &f{value}"
 
 disk:
-  header: "&8&m--------&r &bDisk &8&m--------"
   root: "&7{root} &8free {color}{free} &8/ &f{total} &8({percent}% used&8)"
   data: "&7Server dir: &f{path}"
 
 check:
-  header: "&8&m--------&r &bHealth Check &8&m--------"
   ok: "&aOK"
   warn: "&e!"
   fail: "&cX"

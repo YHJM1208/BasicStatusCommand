@@ -4,7 +4,7 @@
 # 带透明度：#RRGGBB 例如 <#ff8800>
 # 占位符用大括号，例如 {player} {ping} {value} {seconds}
 
-prefix: "<gray>[<aqua>BSC</aqua>]</gray> "
+prefix: "<gray>[<aqua>BasicStatusCmd</aqua>]</gray> "
 
 general:
   no-permission: "<red>你没有权限执行该命令。</red>"
@@ -14,10 +14,9 @@ general:
   reloaded: "<green>配置与语言文件已重新加载。</green>"
 
 help:
-  title: "<dark_gray>--------</dark_gray> <aqua>{name} {version}</aqua> <dark_gray>--------</dark_gray>"
+  header: "<aqua>{version}</aqua>"
   entry: "<gray>/{command}</gray> <dark_gray>-</dark_gray> <gray>{desc}</gray>"
   reload: "<gray>/{command} reload</gray> <dark_gray>-</dark_gray> <gray>{desc}</gray>"
-  footer: "<dark_gray>--------------------------------</dark_gray>"
 
 desc:
   basicstatuscmd: "显示状态命令列表"
@@ -38,7 +37,6 @@ desc:
   check: "一键巡检服务器隐患并报告异常"
 
 ping:
-  header: "<dark_gray>--------</dark_gray> <aqua>延迟</aqua> <dark_gray>--------</dark_gray>"
   entry-good: "<gray>{player} <dark_gray>-</dark_gray> <green>{ping} ms</green> <dark_gray>(<green>良好</green>)</dark_gray>"
   entry-medium: "<gray>{player} <dark_gray>-</dark_gray> <yellow>{ping} ms</yellow> <dark_gray>(<yellow>一般</yellow>)</dark_gray>"
   entry-bad: "<gray>{player} <dark_gray>-</dark_gray> <red>{ping} ms</red> <dark_gray>(<red>较差</red>)</dark_gray>"
@@ -46,7 +44,6 @@ ping:
   world: "<gray>所在世界: <white>{world}</white></gray>"
 
 traffic:
-  header: "<dark_gray>--------</dark_gray> <aqua>流量</aqua> <dark_gray>--------</dark_gray>"
   sampling: "<gray>正在采样 <white>{seconds}</white> 秒，请稍候……</gray>"
   line-window: "<gray>采样窗口: <white>{seconds} 秒</white> <dark_gray>|</dark_gray> 已接入通道: <white>{channels}</white></gray>"
   line-down: "<gray>下行: <green>{rate}</green> <dark_gray>(<white>{packets}</white> pkt/s)</dark_gray></gray>"
@@ -56,7 +53,6 @@ traffic:
   no-channel: "<yellow>未接入任何玩家通道（该服务端可能改动了 Netty 结构），当前只能按 0 统计。</yellow>"
 
 top:
-  header: "<dark_gray>--------</dark_gray> <aqua>延迟 Top {size}</aqua> <dark_gray>--------</dark_gray>"
   entry-good: "<gray>#{rank} <white>{player}</white> <dark_gray>-</dark_gray> <green>{ping} ms</green></gray>"
   entry-medium: "<gray>#{rank} <white>{player}</white> <dark_gray>-</dark_gray> <yellow>{ping} ms</yellow></gray>"
   entry-bad: "<gray>#{rank} <white>{player}</white> <dark_gray>-</dark_gray> <red>{ping} ms</red></gray>"
@@ -64,7 +60,6 @@ top:
   empty: "<gray>当前没有在线玩家。</gray>"
 
 tps:
-  header: "<dark_gray>--------</dark_gray> <aqua>TPS</aqua> <dark_gray>--------</dark_gray>"
   label-1m: "1 分钟"
   label-5m: "5 分钟"
   label-15m: "15 分钟"
@@ -75,7 +70,6 @@ tps:
   mspt: "<gray>MSPT: </gray>{color}{value} ms"
 
 cpu:
-  header: "<dark_gray>--------</dark_gray> <aqua>CPU</aqua> <dark_gray>--------</dark_gray>"
   label-process: "进程 CPU"
   label-system: "系统 CPU"
   process: "<gray>进程 CPU: </gray>{color}{value}%"
@@ -85,37 +79,31 @@ cpu:
   unavailable: "<gray>{label}: <dark_gray>不可用</dark_gray></gray>"
 
 mem:
-  header: "<dark_gray>--------</dark_gray> <aqua>内存</aqua> <dark_gray>--------</dark_gray>"
   heap: "<gray>堆内存: {color}{used} <gray>/</gray> <white>{max}</white> <dark_gray>({color}{percent}%</dark_gray>)</gray>"
   nonheap: "<gray>非堆内存: <white>{used}</white></gray>"
   physical: "<gray>物理内存: <white>{used}</white> <gray>/</gray> <white>{total}</white> <dark_gray>({percent}%)</dark_gray></gray>"
 
 gc:
-  header: "<dark_gray>--------</dark_gray> <aqua>GC</aqua> <dark_gray>--------</dark_gray>"
   entry: "<gray>{name}: <white>{count} 次</white> <gray>/</gray> <white>{time} ms</white></gray>"
   total: "<gray>合计: <white>{count} 次</white> <gray>/</gray> <white>{time} ms</white> <dark_gray>({percent}% 运行时间)</dark_gray></gray>"
 
 thread:
-  header: "<dark_gray>--------</dark_gray> <aqua>线程</aqua> <dark_gray>--------</dark_gray>"
   live: "<gray>活跃线程: <white>{value}</white></gray>"
   peak: "<gray>峰值线程: <white>{value}</white></gray>"
   daemon: "<gray>守护线程: <white>{value}</white></gray>"
   started: "<gray>累计创建: <white>{value}</white></gray>"
 
 entity:
-  header: "<dark_gray>--------</dark_gray> <aqua>实体</aqua> <dark_gray>--------</dark_gray>"
   total: "<gray>实体总数: <white>{value}</white></gray>"
   category: "<gray>全服分类: <red>怪物 {monster}</red> <gray>|</gray> <green>动物 {animals}</green> <gray>|</gray> <aqua>水生 {water}</aqua> <gray>|</gray> <yellow>村民 {villager}</yellow> <gray>|</gray> <gray>其他 {other}</gray></gray>"
   world: "<gray>{world}: <white>{total}</white> <dark_gray>(</dark_gray><red>怪 {monster}</red> <gray>/</gray> <green>动物 {animals}</green> <gray>/</gray> <gray>其他 {other}</gray><dark_gray>)</dark_gray></gray>"
   more-worlds: "<gray>……其余 <white>{count}</white> 个世界未显示</gray>"
 
 chunk:
-  header: "<dark_gray>--------</dark_gray> <aqua>区块</aqua> <dark_gray>--------</dark_gray>"
   total: "<gray>已加载区块: <white>{value}</white></gray>"
   world: "<gray>{world}: <white>{value}</white></gray>"
 
 info:
-  header: "<dark_gray>--------</dark_gray> <aqua>服务器信息</aqua> <dark_gray>--------</dark_gray>"
   server: "<gray>服务端: <white>{name}</white></gray>"
   version: "<gray>版本: <white>{version}</white></gray>"
   bukkit: "<gray>Bukkit: <white>{version}</white></gray>"
@@ -125,7 +113,6 @@ info:
   java: "<gray>JVM: <white>{version}</white> <dark_gray>({vendor})</dark_gray></gray>"
 
 env:
-  header: "<dark_gray>--------</dark_gray> <aqua>运行环境</aqua> <dark_gray>--------</dark_gray>"
   java: "<gray>Java: <white>{version}</white> <dark_gray>({vendor})</dark_gray></gray>"
   vm: "<gray>虚拟机: <white>{name}</white> <dark_gray>({version})</dark_gray></gray>"
   os: "<gray>系统: <white>{name}</white> <dark_gray>({arch})</dark_gray> <white>{version}</white></gray>"
@@ -134,12 +121,10 @@ env:
   dir: "<gray>服务器目录: <white>{value}</white></gray>"
 
 disk:
-  header: "<dark_gray>--------</dark_gray> <aqua>磁盘</aqua> <dark_gray>--------</dark_gray>"
   root: "<gray>{root} <dark_gray>可用</dark_gray> {color}{free}<dark_gray> / </dark_gray><white>{total}</white> <dark_gray>({percent}% 已用)</dark_gray></gray>"
   data: "<gray>服务器目录: <white>{path}</white></gray>"
 
 check:
-  header: "<dark_gray>--------</dark_gray> <aqua>巡检</aqua> <dark_gray>--------</dark_gray>"
   ok: "<green>√</green>"
   warn: "<yellow>!</yellow>"
   fail: "<red>×</red>"

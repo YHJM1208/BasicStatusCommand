@@ -1,5 +1,15 @@
 # 更新日志
 
+## 1.2.1 — 2026-11-22
+
+### 变更
+
+- 输出前缀统一为 `[BasicStatusCmd]`（paper 用 MiniMessage、bukkit 用 `&` 色码各一份），与 BasicTpCmd 的 `[BasicTpCmd]` 前缀做法一致。
+- 去掉全部 `--------` 分割线：帮助标题/页脚与 14 条命令的分节标题不再输出，改为每条输出都带插件前缀，避免不同客户端字体下分割线错位。
+- 启用日志由 `BSC 已启用（Paper，语言 = zh_CN）` 改为 `BasicStatusCmd 已启用，语言 = zh_CN`，与 BasicTpCmd 的日志格式一致。
+- 帮助标题键改名 `help.header`；旧语言文件里的 `help.title` 不再读取，旧 `[BSC]` 前缀会在内存中迁移为 `[BasicStatusCmd]` 并打一条 warning，不写回文件。
+- 命令、权限、配置项、语言文件结构与数据格式未变，可直接替换 1.2.0。
+
 ## 1.2.0 — 2026-11-22
 
 ### 变更

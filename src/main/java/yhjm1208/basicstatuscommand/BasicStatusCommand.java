@@ -39,7 +39,7 @@ public final class BasicStatusCommand extends JavaPlugin {
             pluginCommand.setTabCompleter(command);
         }
 
-        getLogger().info("BSC 已启用（" + platform.label() + "，语言 = " + lang.language() + "）");
+        getLogger().info("BasicStatusCmd 已启用，语言 = " + lang.language());
     }
 
     @Override
