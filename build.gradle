@@ -3,18 +3,32 @@ plugins {
 }
 
 group = 'yhjm1208'
-version = '1.1.0'
+version = '1.2.0'
 
-// 两条线各出一个包：
-//   cmd /c "build.bat clean jar -Pmc=1.8.8"    -> bukkit（1.8.8 - 1.18.1）
-//   cmd /c "build.bat clean jar -Pmc=1.18.2"   -> paper （1.18.2）
+// 每条版本线各出一个包：
+//   cmd /c "build.bat clean jar -Pmc=1.8.8"   -> bukkit（1.8.8 - 1.18.1）
+//   cmd /c "build.bat clean jar -Pmc=1.18.2"  -> paper （1.18.2）
+//   cmd /c "build.bat clean jar -Pmc=1.19"    -> paper （1.19 - 1.19.4）
+//   cmd /c "build.bat clean jar -Pmc=1.20"    -> paper （1.20 - 1.20.6）
+//   cmd /c "build.bat clean jar -Pmc=1.21"    -> paper （1.21 - 1.21.11）
+//   cmd /c "build.bat clean jar -Pmc=26.3"    -> paper （26.3）
 def mc = (findProperty('mc') ?: '1.18.2').toString()
 
+// 每个 MC 大版本线取「该线最低的 paper-api + 该线最低的 Java」，
+// 这样一个包就能覆盖整条线（低版本字节码在高版本 Java 上向前兼容）。
 def targets = [
         '1.8.8' : [platform: 'bukkit', api: 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT',
                    java: 8, toolchain: 21, apiVersion: '1.13', range: '1.8.8-1.18.1'],
         '1.18.2': [platform: 'paper', api: 'io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT',
                    java: 17, toolchain: 21, apiVersion: '1.18', range: '1.18.2'],
+        '1.19'  : [platform: 'paper', api: 'io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT',
+                   java: 17, toolchain: 21, apiVersion: '1.19', range: '1.19-1.19.4'],
+        '1.20'  : [platform: 'paper', api: 'io.papermc.paper:paper-api:1.20-R0.1-SNAPSHOT',
+                   java: 17, toolchain: 21, apiVersion: '1.20', range: '1.20-1.20.6'],
+        '1.21'  : [platform: 'paper', api: 'io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT',
+                   java: 21, toolchain: 21, apiVersion: '1.21', range: '1.21-1.21.11'],
+        '26.3'  : [platform: 'paper', api: 'io.papermc.paper:paper-api:26.3.build.249-stable',
+                   java: 25, toolchain: 25, apiVersion: '26.3', range: '26.3'],
 ]
 
 def target = targets[mc]

@@ -5,7 +5,7 @@
 
 - **14 条直接命令**：网络 / 性能 / 生态 / 系统 / 巡检五组状态一网打尽
 - **零依赖**：JVM 读数用 `java.lang.management`，流量用服务端自带 Netty
-- **两个包**：bukkit 线覆盖 1.8.8 – 1.18.1，paper 线用原生 TPS / ping 接口
+- **按版本线分包**：bukkit 线覆盖 1.8.8 – 1.18.1；paper 线按 1.18.2 / 1.19 / 1.20 / 1.21 / 26.3 各一个包，直接用对应版本的原生 TPS / ping 接口
 - **中英双语**：`zh_CN` / `en_US` 现成可用
 - **巡检可配阈值**：TPS、内存、磁盘、区块、实体、线程、GC 七项，异常单独标出
 
@@ -13,10 +13,14 @@
 
 | 服务端核心 | MC 版本 | Java | 用哪个包 |
 |---|---|---|---|
-| CraftBukkit / Spigot | 1.8.8 – 1.18.1 | 8+ | `BasicStatusCommand-1.1.0-bukkit-1.8.8-1.18.1.jar` |
-| Paper | 1.18.2 – 26.3 | 17+ | `BasicStatusCommand-1.1.0-paper-1.18.2.jar` |
+| CraftBukkit / Spigot | 1.8.8 – 1.18.1 | 8+ | `BasicStatusCommand-1.2.0-bukkit-1.8.8-1.18.1.jar` |
+| Paper | 1.18.2 | 17+ | `BasicStatusCommand-1.2.0-paper-1.18.2.jar` |
+| Paper | 1.19 – 1.19.4 | 17+ | `BasicStatusCommand-1.2.0-paper-1.19-1.19.4.jar` |
+| Paper | 1.20 – 1.20.6 | 17+ | `BasicStatusCommand-1.2.0-paper-1.20-1.20.6.jar` |
+| Paper | 1.21 – 1.21.11 | 21+ | `BasicStatusCommand-1.2.0-paper-1.21-1.21.11.jar` |
+| Paper | 26.3 | 25+ | `BasicStatusCommand-1.2.0-paper-26.3.jar` |
 
-Purpur / Pufferfish 等 Paper 分支按对应版本线装。**同一服只装一个包**，两个包同时放会因同名插件冲突。
+Purpur / Pufferfish 等 Paper 分支按对应版本线装。**同一服只装一个包**，多个包同时放会因同名插件冲突。
 
 ## 安装
 
@@ -81,7 +85,7 @@ Purpur / Pufferfish 等 Paper 分支按对应版本线装。**同一服只装一
 
 ## 更新日志
 
-1.1.0：命令改为 `/ping`、`/cpu`、`/check` 等 14 条直接触发；`/basicstatuscmd` 只保留命令索引与 `reload`；paper 语言文件改 MiniMessage、bukkit 保持 `&` 色码，与 BasicTpCmd 两条线对齐。历史见 [CHANGELOG.md](CHANGELOG.md)。
+1.2.0：按 Paper 版本线补全分包（1.18.2 / 1.19 / 1.20 / 1.21 / 26.3，各用该线最低 paper-api 编译），命令、权限、配置与数据格式不变，可直接替换 1.1.0。历史见 [CHANGELOG.md](CHANGELOG.md)。
 
 ## 许可与来源
 
