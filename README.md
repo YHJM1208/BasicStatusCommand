@@ -86,3 +86,4 @@ Purpur / Pufferfish 等 Paper 分支按对应版本线装。**同一服只装一
 ## 许可与来源
 
 MIT License，Copyright (c) 2026 YHJM1208。
+源码仓库：https://github.com/YHJM1208/BasicStatusCommand-
