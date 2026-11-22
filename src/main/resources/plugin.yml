@@ -1,0 +1,115 @@
+name: BasicStatusCommand
+version: '${version}'
+main: yhjm1208.basicstatuscommand.BasicStatusCommand
+api-version: '${apiVersion}'
+description: 基础状态命令 —— 延迟、流量、TPS、JVM、实体、区块、磁盘与一键巡检
+authors: [YHJM1208]
+
+commands:
+  basicstatuscmd:
+    description: 显示状态命令列表，或重载配置与语言文件
+    usage: /basicstatuscmd [reload]
+  ping:
+    description: 查询自己或他人的网络延迟
+    usage: /ping [玩家]
+  traffic:
+    description: 查询服务器数据包收发速率
+    usage: /traffic
+  top:
+    description: 查看全服延迟最高的前 5 名玩家
+    usage: /top
+  tps:
+    description: 查询服务器 1/5/15 分钟 TPS
+    usage: /tps
+  cpu:
+    description: 查询 JVM 进程 CPU 占用率
+    usage: /cpu
+  mem:
+    description: 查询堆内存与物理内存使用情况
+    usage: /mem
+  gc:
+    description: 查询垃圾回收次数和耗时
+    usage: /gc
+  thread:
+    description: 查询 JVM 活跃线程数
+    usage: /thread
+  entity:
+    description: 分类统计全服实体数量
+    usage: /entity
+  chunk:
+    description: 统计当前全服已加载区块数
+    usage: /chunk
+  info:
+    description: 查看服务器基础信息
+    usage: /info
+  env:
+    description: 查看运行环境 / Java 版本 / 系统
+    usage: /env
+  disk:
+    description: 查看硬盘剩余空间
+    usage: /disk
+  check:
+    description: 一键巡检服务器隐患并报告异常
+    usage: /check
+
+permissions:
+  basicstatuscmd.ping:
+    description: 允许 /ping
+    default: true
+  basicstatuscmd.top:
+    description: 允许 /top
+    default: true
+  basicstatuscmd.tps:
+    description: 允许 /tps
+    default: true
+  basicstatuscmd.info:
+    description: 允许 /info
+    default: true
+  basicstatuscmd.traffic:
+    description: 允许 /traffic
+    default: op
+  basicstatuscmd.cpu:
+    description: 允许 /cpu
+    default: op
+  basicstatuscmd.mem:
+    description: 允许 /mem
+    default: op
+  basicstatuscmd.gc:
+    description: 允许 /gc
+    default: op
+  basicstatuscmd.thread:
+    description: 允许 /thread
+    default: op
+  basicstatuscmd.entity:
+    description: 允许 /entity
+    default: op
+  basicstatuscmd.chunk:
+    description: 允许 /chunk
+    default: op
+  basicstatuscmd.env:
+    description: 允许 /env
+    default: op
+  basicstatuscmd.disk:
+    description: 允许 /disk
+    default: op
+  basicstatuscmd.check:
+    description: 允许 /check
+    default: op
+  basicstatuscmd.reload:
+    description: 允许 /basicstatuscmd reload
+    default: op
+  basicstatuscmd.admin:
+    description: 允许全部管理类状态命令
+    default: op
+    children:
+      basicstatuscmd.traffic: true
+      basicstatuscmd.cpu: true
+      basicstatuscmd.mem: true
+      basicstatuscmd.gc: true
+      basicstatuscmd.thread: true
+      basicstatuscmd.entity: true
+      basicstatuscmd.chunk: true
+      basicstatuscmd.env: true
+      basicstatuscmd.disk: true
+      basicstatuscmd.check: true
+      basicstatuscmd.reload: true

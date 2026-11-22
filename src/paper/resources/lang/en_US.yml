@@ -1,0 +1,158 @@
+# BasicStatusCommand language file (English)
+# Every message uses MiniMessage. Colors, bold and click actions live here, not in code.
+# Common tags: <red> <green> <yellow> <aqua> <gray> <gold> <bold> <italic> <underlined>
+# Hex colors: #RRGGBB, for example <#ff8800>
+# Placeholders use braces: {player} {ping} {value} {seconds} ...
+
+prefix: "<gray>[<aqua>BSC</aqua>]</gray> "
+
+general:
+  no-permission: "<red>You do not have permission to use this command.</red>"
+  player-not-found: "<red>Player <white>{player}</white> is not online.</red>"
+  console-needs-player: "<red>Specify a player name when running ping from the console.</red>"
+  unknown-arg: "<red>Unknown argument <white>{sub}</white>. Use <white>/basicstatuscmd</white> for help.</red>"
+  reloaded: "<green>Config and language files reloaded.</green>"
+
+help:
+  title: "<dark_gray>--------</dark_gray> <aqua>{name} {version}</aqua> <dark_gray>--------</dark_gray>"
+  entry: "<gray>/{command}</gray> <dark_gray>-</dark_gray> <gray>{desc}</gray>"
+  reload: "<gray>/{command} reload</gray> <dark_gray>-</dark_gray> <gray>{desc}</gray>"
+  footer: "<dark_gray>--------------------------------</dark_gray>"
+
+desc:
+  basicstatuscmd: "Show the status command list"
+  reload: "Reload config and language files"
+  ping: "Show your own or another player's latency"
+  traffic: "Show server packet send/receive rates"
+  top: "Top 5 players by latency"
+  tps: "Show 1/5/15 minute TPS"
+  cpu: "Show JVM process CPU usage"
+  mem: "Show heap and physical memory usage"
+  gc: "Show garbage collection counts and time"
+  thread: "Show active JVM thread count"
+  entity: "Count entities by category"
+  chunk: "Count loaded chunks"
+  info: "Show basic server information"
+  env: "Show runtime / Java / OS information"
+  disk: "Show free disk space"
+  check: "Run a one-shot health check"
+
+ping:
+  header: "<dark_gray>--------</dark_gray> <aqua>Latency</aqua> <dark_gray>--------</dark_gray>"
+  entry-good: "<gray>{player} <dark_gray>-</dark_gray> <green>{ping} ms</green> <dark_gray>(<green>Good</green>)</dark_gray>"
+  entry-medium: "<gray>{player} <dark_gray>-</dark_gray> <yellow>{ping} ms</yellow> <dark_gray>(<yellow>Fair</yellow>)</dark_gray>"
+  entry-bad: "<gray>{player} <dark_gray>-</dark_gray> <red>{ping} ms</red> <dark_gray>(<red>Poor</red>)</dark_gray>"
+  entry-unknown: "<gray>{player} <dark_gray>-</dark_gray> <gray>Latency unknown</gray>"
+  world: "<gray>World: <white>{world}</white></gray>"
+
+traffic:
+  header: "<dark_gray>--------</dark_gray> <aqua>Traffic</aqua> <dark_gray>--------</dark_gray>"
+  sampling: "<gray>Sampling for <white>{seconds}</white> seconds...</gray>"
+  line-window: "<gray>Window: <white>{seconds}s</white> <dark_gray>|</dark_gray> Channels: <white>{channels}</white></gray>"
+  line-down: "<gray>Down: <green>{rate}</green> <dark_gray>(<white>{packets}</white> pkt/s)</dark_gray></gray>"
+  line-up: "<gray>Up: <yellow>{rate}</yellow> <dark_gray>(<white>{packets}</white> pkt/s)</dark_gray></gray>"
+  line-total: "<gray>Total: <white>down {in}</white> <gray>/</gray> <white>up {out}</white></gray>"
+  no-players: "<gray>No players online; traffic is reported as zero.</gray>"
+  no-channel: "<yellow>No player channel was instrumented (this server may use a different Netty layout); showing zeros.</yellow>"
+
+top:
+  header: "<dark_gray>--------</dark_gray> <aqua>Latency Top {size}</aqua> <dark_gray>--------</dark_gray>"
+  entry-good: "<gray>#{rank} <white>{player}</white> <dark_gray>-</dark_gray> <green>{ping} ms</green></gray>"
+  entry-medium: "<gray>#{rank} <white>{player}</white> <dark_gray>-</dark_gray> <yellow>{ping} ms</yellow></gray>"
+  entry-bad: "<gray>#{rank} <white>{player}</white> <dark_gray>-</dark_gray> <red>{ping} ms</red></gray>"
+  entry-unknown: "<gray>#{rank} <white>{player}</white> <dark_gray>-</dark_gray> <gray>unknown</gray></gray>"
+  empty: "<gray>No players are online.</gray>"
+
+tps:
+  header: "<dark_gray>--------</dark_gray> <aqua>TPS</aqua> <dark_gray>--------</dark_gray>"
+  label-1m: "1 minute"
+  label-5m: "5 minutes"
+  label-15m: "15 minutes"
+  line: "<gray>{label}: </gray>{color}{value}"
+  warming: "<gray>{label}: <dark_gray>warming up</dark_gray> ({seconds}s)</gray>"
+  collecting: "<gray>TPS: <dark_gray>still collecting, try again later</dark_gray></gray>"
+  native-missing: "<gray>TPS: <dark_gray>this server has no TPS API</dark_gray></gray>"
+  mspt: "<gray>MSPT: </gray>{color}{value} ms"
+
+cpu:
+  header: "<dark_gray>--------</dark_gray> <aqua>CPU</aqua> <dark_gray>--------</dark_gray>"
+  label-process: "Process CPU"
+  label-system: "System CPU"
+  process: "<gray>Process CPU: </gray>{color}{value}%"
+  system: "<gray>System CPU: </gray>{color}{value}%"
+  cores: "<gray>Processors: <white>{value}</white></gray>"
+  load: "<gray>System load: <white>{value}</white></gray>"
+  unavailable: "<gray>{label}: <dark_gray>unavailable</dark_gray></gray>"
+
+mem:
+  header: "<dark_gray>--------</dark_gray> <aqua>Memory</aqua> <dark_gray>--------</dark_gray>"
+  heap: "<gray>Heap: {color}{used} <gray>/</gray> <white>{max}</white> <dark_gray>({color}{percent}%</dark_gray>)</gray>"
+  nonheap: "<gray>Non-heap: <white>{used}</white></gray>"
+  physical: "<gray>Physical: <white>{used}</white> <gray>/</gray> <white>{total}</white> <dark_gray>({percent}%)</dark_gray></gray>"
+
+gc:
+  header: "<dark_gray>--------</dark_gray> <aqua>GC</aqua> <dark_gray>--------</dark_gray>"
+  entry: "<gray>{name}: <white>{count} collections</white> <gray>/</gray> <white>{time} ms</white></gray>"
+  total: "<gray>Total: <white>{count} collections</white> <gray>/</gray> <white>{time} ms</white> <dark_gray>({percent}% of uptime)</dark_gray></gray>"
+
+thread:
+  header: "<dark_gray>--------</dark_gray> <aqua>Threads</aqua> <dark_gray>--------</dark_gray>"
+  live: "<gray>Live threads: <white>{value}</white></gray>"
+  peak: "<gray>Peak threads: <white>{value}</white></gray>"
+  daemon: "<gray>Daemon threads: <white>{value}</white></gray>"
+  started: "<gray>Started: <white>{value}</white></gray>"
+
+entity:
+  header: "<dark_gray>--------</dark_gray> <aqua>Entities</aqua> <dark_gray>--------</dark_gray>"
+  total: "<gray>Total entities: <white>{value}</white></gray>"
+  category: "<gray>By category: <red>Monster {monster}</red> <gray>|</gray> <green>Animals {animals}</green> <gray>|</gray> <aqua>Water {water}</aqua> <gray>|</gray> <yellow>Villager {villager}</yellow> <gray>|</gray> <gray>Other {other}</gray></gray>"
+  world: "<gray>{world}: <white>{total}</white> <dark_gray>(</dark_gray><red>M {monster}</red> <gray>/</gray> <green>A {animals}</green> <gray>/</gray> <gray>O {other}</gray><dark_gray>)</dark_gray></gray>"
+  more-worlds: "<gray>... {count} more worlds not shown</gray>"
+
+chunk:
+  header: "<dark_gray>--------</dark_gray> <aqua>Chunks</aqua> <dark_gray>--------</dark_gray>"
+  total: "<gray>Loaded chunks: <white>{value}</white></gray>"
+  world: "<gray>{world}: <white>{value}</white></gray>"
+
+info:
+  header: "<dark_gray>--------</dark_gray> <aqua>Server Info</aqua> <dark_gray>--------</dark_gray>"
+  server: "<gray>Server: <white>{name}</white></gray>"
+  version: "<gray>Version: <white>{version}</white></gray>"
+  bukkit: "<gray>Bukkit: <white>{version}</white></gray>"
+  players: "<gray>Players: <white>{online}</white> <gray>/</gray> <white>{max}</white></gray>"
+  worlds: "<gray>Worlds: <white>{worlds}</white> | Plugins: <white>{plugins}</white></gray>"
+  uptime: "<gray>Uptime: <white>{value}</white></gray>"
+  java: "<gray>JVM: <white>{version}</white> <dark_gray>({vendor})</dark_gray></gray>"
+
+env:
+  header: "<dark_gray>--------</dark_gray> <aqua>Environment</aqua> <dark_gray>--------</dark_gray>"
+  java: "<gray>Java: <white>{version}</white> <dark_gray>({vendor})</dark_gray></gray>"
+  vm: "<gray>VM: <white>{name}</white> <dark_gray>({version})</dark_gray></gray>"
+  os: "<gray>OS: <white>{name}</white> <dark_gray>({arch})</dark_gray> <white>{version}</white></gray>"
+  cores: "<gray>CPU cores: <white>{value}</white></gray>"
+  misc: "<gray>Encoding: <white>{encoding}</white> <gray>|</gray> Timezone: <white>{timezone}</white></gray>"
+  dir: "<gray>Server dir: <white>{value}</white></gray>"
+
+disk:
+  header: "<dark_gray>--------</dark_gray> <aqua>Disk</aqua> <dark_gray>--------</dark_gray>"
+  root: "<gray>{root} <dark_gray>free</dark_gray> {color}{free}<dark_gray> / </dark_gray><white>{total}</white> <dark_gray>({percent}% used)</dark_gray></gray>"
+  data: "<gray>Server dir: <white>{path}</white></gray>"
+
+check:
+  header: "<dark_gray>--------</dark_gray> <aqua>Health Check</aqua> <dark_gray>--------</dark_gray>"
+  ok: "<green>OK</green>"
+  warn: "<yellow>!</yellow>"
+  fail: "<red>X</red>"
+  item: "{status} <gray>{label}: <white>{value}</white></gray>"
+  threshold: "<dark_gray>(threshold {value})</dark_gray>"
+  collecting: "collecting"
+  label-tps: "TPS"
+  label-memory: "Memory"
+  label-disk: "Disk"
+  label-free: "free"
+  label-chunk: "Chunks"
+  label-entity: "Entities"
+  label-thread: "Threads"
+  label-gc: "GC time"
+  summary-ok: "<green>No issues found across {count} checks.</green>"
+  summary-warn: "<yellow>{count} item(s) need attention.</yellow>"

@@ -1,0 +1,158 @@
+# BasicStatusCommand 语言文件（简体中文）
+# 所有文本使用 MiniMessage 格式，颜色、加粗、点击按钮都在这里改，不需要改代码。
+# 常用标签：<red> <green> <yellow> <aqua> <gray> <gold> <bold> <italic> <underlined>
+# 带透明度：#RRGGBB 例如 <#ff8800>
+# 占位符用大括号，例如 {player} {ping} {value} {seconds}
+
+prefix: "<gray>[<aqua>BSC</aqua>]</gray> "
+
+general:
+  no-permission: "<red>你没有权限执行该命令。</red>"
+  player-not-found: "<red>找不到在线玩家 <white>{player}</white>。</red>"
+  console-needs-player: "<red>控制台执行 ping 时请指定玩家名。</red>"
+  unknown-arg: "<red>未知参数 <white>{sub}</white>，输入 <white>/basicstatuscmd</white> 查看用法。</red>"
+  reloaded: "<green>配置与语言文件已重新加载。</green>"
+
+help:
+  title: "<dark_gray>--------</dark_gray> <aqua>{name} {version}</aqua> <dark_gray>--------</dark_gray>"
+  entry: "<gray>/{command}</gray> <dark_gray>-</dark_gray> <gray>{desc}</gray>"
+  reload: "<gray>/{command} reload</gray> <dark_gray>-</dark_gray> <gray>{desc}</gray>"
+  footer: "<dark_gray>--------------------------------</dark_gray>"
+
+desc:
+  basicstatuscmd: "显示状态命令列表"
+  reload: "重载配置与语言文件"
+  ping: "查询自己或他人的网络延迟"
+  traffic: "查询服务器数据包收发速率"
+  top: "查看全服延迟最高的前 5 名玩家"
+  tps: "查询服务器 1/5/15 分钟 TPS"
+  cpu: "查询 JVM 进程 CPU 占用率"
+  mem: "查询堆内存与物理内存使用情况"
+  gc: "查询垃圾回收次数和耗时"
+  thread: "查询 JVM 活跃线程数"
+  entity: "分类统计全服实体数量"
+  chunk: "统计当前全服已加载区块数"
+  info: "查看服务器基础信息"
+  env: "查看运行环境 / Java 版本 / 系统"
+  disk: "查看硬盘剩余空间"
+  check: "一键巡检服务器隐患并报告异常"
+
+ping:
+  header: "<dark_gray>--------</dark_gray> <aqua>延迟</aqua> <dark_gray>--------</dark_gray>"
+  entry-good: "<gray>{player} <dark_gray>-</dark_gray> <green>{ping} ms</green> <dark_gray>(<green>良好</green>)</dark_gray>"
+  entry-medium: "<gray>{player} <dark_gray>-</dark_gray> <yellow>{ping} ms</yellow> <dark_gray>(<yellow>一般</yellow>)</dark_gray>"
+  entry-bad: "<gray>{player} <dark_gray>-</dark_gray> <red>{ping} ms</red> <dark_gray>(<red>较差</red>)</dark_gray>"
+  entry-unknown: "<gray>{player} <dark_gray>-</dark_gray> <gray>延迟未知</gray>"
+  world: "<gray>所在世界: <white>{world}</white></gray>"
+
+traffic:
+  header: "<dark_gray>--------</dark_gray> <aqua>流量</aqua> <dark_gray>--------</dark_gray>"
+  sampling: "<gray>正在采样 <white>{seconds}</white> 秒，请稍候……</gray>"
+  line-window: "<gray>采样窗口: <white>{seconds} 秒</white> <dark_gray>|</dark_gray> 已接入通道: <white>{channels}</white></gray>"
+  line-down: "<gray>下行: <green>{rate}</green> <dark_gray>(<white>{packets}</white> pkt/s)</dark_gray></gray>"
+  line-up: "<gray>上行: <yellow>{rate}</yellow> <dark_gray>(<white>{packets}</white> pkt/s)</dark_gray></gray>"
+  line-total: "<gray>累计: <white>下行 {in}</white> <gray>/</gray> <white>上行 {out}</white></gray>"
+  no-players: "<gray>当前没有在线玩家，流量按 0 统计。</gray>"
+  no-channel: "<yellow>未接入任何玩家通道（该服务端可能改动了 Netty 结构），当前只能按 0 统计。</yellow>"
+
+top:
+  header: "<dark_gray>--------</dark_gray> <aqua>延迟 Top {size}</aqua> <dark_gray>--------</dark_gray>"
+  entry-good: "<gray>#{rank} <white>{player}</white> <dark_gray>-</dark_gray> <green>{ping} ms</green></gray>"
+  entry-medium: "<gray>#{rank} <white>{player}</white> <dark_gray>-</dark_gray> <yellow>{ping} ms</yellow></gray>"
+  entry-bad: "<gray>#{rank} <white>{player}</white> <dark_gray>-</dark_gray> <red>{ping} ms</red></gray>"
+  entry-unknown: "<gray>#{rank} <white>{player}</white> <dark_gray>-</dark_gray> <gray>延迟未知</gray></gray>"
+  empty: "<gray>当前没有在线玩家。</gray>"
+
+tps:
+  header: "<dark_gray>--------</dark_gray> <aqua>TPS</aqua> <dark_gray>--------</dark_gray>"
+  label-1m: "1 分钟"
+  label-5m: "5 分钟"
+  label-15m: "15 分钟"
+  line: "<gray>{label}: </gray>{color}{value}"
+  warming: "<gray>{label}: <dark_gray>采样中</dark_gray> ({seconds} 秒)</gray>"
+  collecting: "<gray>TPS: <dark_gray>还在采样，稍后再试</dark_gray></gray>"
+  native-missing: "<gray>TPS: <dark_gray>当前服务端没有 TPS 接口</dark_gray></gray>"
+  mspt: "<gray>MSPT: </gray>{color}{value} ms"
+
+cpu:
+  header: "<dark_gray>--------</dark_gray> <aqua>CPU</aqua> <dark_gray>--------</dark_gray>"
+  label-process: "进程 CPU"
+  label-system: "系统 CPU"
+  process: "<gray>进程 CPU: </gray>{color}{value}%"
+  system: "<gray>系统 CPU: </gray>{color}{value}%"
+  cores: "<gray>处理器: <white>{value} 核</white></gray>"
+  load: "<gray>系统负载: <white>{value}</white></gray>"
+  unavailable: "<gray>{label}: <dark_gray>不可用</dark_gray></gray>"
+
+mem:
+  header: "<dark_gray>--------</dark_gray> <aqua>内存</aqua> <dark_gray>--------</dark_gray>"
+  heap: "<gray>堆内存: {color}{used} <gray>/</gray> <white>{max}</white> <dark_gray>({color}{percent}%</dark_gray>)</gray>"
+  nonheap: "<gray>非堆内存: <white>{used}</white></gray>"
+  physical: "<gray>物理内存: <white>{used}</white> <gray>/</gray> <white>{total}</white> <dark_gray>({percent}%)</dark_gray></gray>"
+
+gc:
+  header: "<dark_gray>--------</dark_gray> <aqua>GC</aqua> <dark_gray>--------</dark_gray>"
+  entry: "<gray>{name}: <white>{count} 次</white> <gray>/</gray> <white>{time} ms</white></gray>"
+  total: "<gray>合计: <white>{count} 次</white> <gray>/</gray> <white>{time} ms</white> <dark_gray>({percent}% 运行时间)</dark_gray></gray>"
+
+thread:
+  header: "<dark_gray>--------</dark_gray> <aqua>线程</aqua> <dark_gray>--------</dark_gray>"
+  live: "<gray>活跃线程: <white>{value}</white></gray>"
+  peak: "<gray>峰值线程: <white>{value}</white></gray>"
+  daemon: "<gray>守护线程: <white>{value}</white></gray>"
+  started: "<gray>累计创建: <white>{value}</white></gray>"
+
+entity:
+  header: "<dark_gray>--------</dark_gray> <aqua>实体</aqua> <dark_gray>--------</dark_gray>"
+  total: "<gray>实体总数: <white>{value}</white></gray>"
+  category: "<gray>全服分类: <red>怪物 {monster}</red> <gray>|</gray> <green>动物 {animals}</green> <gray>|</gray> <aqua>水生 {water}</aqua> <gray>|</gray> <yellow>村民 {villager}</yellow> <gray>|</gray> <gray>其他 {other}</gray></gray>"
+  world: "<gray>{world}: <white>{total}</white> <dark_gray>(</dark_gray><red>怪 {monster}</red> <gray>/</gray> <green>动物 {animals}</green> <gray>/</gray> <gray>其他 {other}</gray><dark_gray>)</dark_gray></gray>"
+  more-worlds: "<gray>……其余 <white>{count}</white> 个世界未显示</gray>"
+
+chunk:
+  header: "<dark_gray>--------</dark_gray> <aqua>区块</aqua> <dark_gray>--------</dark_gray>"
+  total: "<gray>已加载区块: <white>{value}</white></gray>"
+  world: "<gray>{world}: <white>{value}</white></gray>"
+
+info:
+  header: "<dark_gray>--------</dark_gray> <aqua>服务器信息</aqua> <dark_gray>--------</dark_gray>"
+  server: "<gray>服务端: <white>{name}</white></gray>"
+  version: "<gray>版本: <white>{version}</white></gray>"
+  bukkit: "<gray>Bukkit: <white>{version}</white></gray>"
+  players: "<gray>在线: <white>{online}</white> <gray>/</gray> <white>{max}</white></gray>"
+  worlds: "<gray>世界: <white>{worlds}</white> | 插件: <white>{plugins}</white></gray>"
+  uptime: "<gray>运行时长: <white>{value}</white></gray>"
+  java: "<gray>JVM: <white>{version}</white> <dark_gray>({vendor})</dark_gray></gray>"
+
+env:
+  header: "<dark_gray>--------</dark_gray> <aqua>运行环境</aqua> <dark_gray>--------</dark_gray>"
+  java: "<gray>Java: <white>{version}</white> <dark_gray>({vendor})</dark_gray></gray>"
+  vm: "<gray>虚拟机: <white>{name}</white> <dark_gray>({version})</dark_gray></gray>"
+  os: "<gray>系统: <white>{name}</white> <dark_gray>({arch})</dark_gray> <white>{version}</white></gray>"
+  cores: "<gray>CPU 核心: <white>{value}</white></gray>"
+  misc: "<gray>编码: <white>{encoding}</white> <gray>|</gray> 时区: <white>{timezone}</white></gray>"
+  dir: "<gray>服务器目录: <white>{value}</white></gray>"
+
+disk:
+  header: "<dark_gray>--------</dark_gray> <aqua>磁盘</aqua> <dark_gray>--------</dark_gray>"
+  root: "<gray>{root} <dark_gray>可用</dark_gray> {color}{free}<dark_gray> / </dark_gray><white>{total}</white> <dark_gray>({percent}% 已用)</dark_gray></gray>"
+  data: "<gray>服务器目录: <white>{path}</white></gray>"
+
+check:
+  header: "<dark_gray>--------</dark_gray> <aqua>巡检</aqua> <dark_gray>--------</dark_gray>"
+  ok: "<green>√</green>"
+  warn: "<yellow>!</yellow>"
+  fail: "<red>×</red>"
+  item: "{status} <gray>{label}: <white>{value}</white></gray>"
+  threshold: "<dark_gray>(阈值 {value})</dark_gray>"
+  collecting: "采样中"
+  label-tps: "TPS"
+  label-memory: "内存"
+  label-disk: "磁盘"
+  label-free: "可用"
+  label-chunk: "区块"
+  label-entity: "实体"
+  label-thread: "线程"
+  label-gc: "GC 占比"
+  summary-ok: "<green>未发现异常，共检查 {count} 项。</green>"
+  summary-warn: "<yellow>发现 {count} 项需要关注。</yellow>"

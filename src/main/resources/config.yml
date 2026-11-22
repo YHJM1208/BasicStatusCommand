@@ -1,0 +1,30 @@
+language: zh_CN
+
+# 延迟分档（毫秒）
+ping:
+  good-ms: 80
+  medium-ms: 200
+
+# /top 显示人数
+top:
+  size: 5
+
+# /traffic 采样秒数
+traffic:
+  sample-seconds: 3
+
+# /entity 每个世界最多显示几行
+entity:
+  max-worlds: 8
+
+# /check 阈值
+check:
+  tps-warn: 18.0
+  tps-fail: 10.0
+  memory-warn-percent: 85
+  memory-fail-percent: 95
+  disk-free-warn-mb: 2048
+  chunk-warn: 10000
+  entity-warn: 5000
+  thread-warn: 400
+  gc-warn-percent: 20

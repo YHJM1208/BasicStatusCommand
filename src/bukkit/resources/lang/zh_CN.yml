@@ -1,0 +1,156 @@
+# BasicStatusCommand legacy 语言文件（简体中文）
+# legacy 线使用 & 传统色码（1.8.8 – 1.18.1 统一走 bukkit 包）
+# 占位符用大括号，例如 {player} {ping} {value} {seconds}
+
+prefix: "&8[&bBSC&8] &r"
+
+general:
+  no-permission: "&c你没有权限执行该命令。"
+  player-not-found: "&c找不到在线玩家 &f{player}&c。"
+  console-needs-player: "&c控制台执行 ping 时请指定玩家名。"
+  unknown-arg: "&c未知参数 &f{sub}&c，输入 &f/basicstatuscmd &c查看用法。"
+  reloaded: "&a配置与语言文件已重新加载。"
+
+help:
+  title: "&8&m--------&r &b{name} {version} &8&m--------"
+  entry: "&8/&f{command} &8- &7{desc}"
+  reload: "&8/&f{command} reload &8- &7{desc}"
+  footer: "&8&m--------------------------------"
+
+desc:
+  basicstatuscmd: "显示状态命令列表"
+  reload: "重载配置与语言文件"
+  ping: "查询自己或他人的网络延迟"
+  traffic: "查询服务器数据包收发速率"
+  top: "查看全服延迟最高的前 5 名玩家"
+  tps: "查询服务器 1/5/15 分钟 TPS"
+  cpu: "查询 JVM 进程 CPU 占用率"
+  mem: "查询堆内存与物理内存使用情况"
+  gc: "查询垃圾回收次数和耗时"
+  thread: "查询 JVM 活跃线程数"
+  entity: "分类统计全服实体数量"
+  chunk: "统计当前全服已加载区块数"
+  info: "查看服务器基础信息"
+  env: "查看运行环境 / Java 版本 / 系统"
+  disk: "查看硬盘剩余空间"
+  check: "一键巡检服务器隐患并报告异常"
+
+ping:
+  header: "&8&m--------&r &b延迟 &8&m--------"
+  entry-good: "&7{player} &8- &a{ping} ms &8(&a良好&8)"
+  entry-medium: "&7{player} &8- &e{ping} ms &8(&e一般&8)"
+  entry-bad: "&7{player} &8- &c{ping} ms &8(&c较差&8)"
+  entry-unknown: "&7{player} &8- &7延迟未知"
+  world: "&7所在世界: &f{world}"
+
+traffic:
+  header: "&8&m--------&r &b流量 &8&m--------"
+  sampling: "&7正在采样 &f{seconds} &7秒，请稍候……"
+  line-window: "&7采样窗口: &f{seconds} 秒 &8| &7已接入通道: &f{channels}"
+  line-down: "&7下行: &a{rate} &8(&f{packets} pkt/s&8)"
+  line-up: "&7上行: &e{rate} &8(&f{packets} pkt/s&8)"
+  line-total: "&7累计: &f下行 {in} &7/ &f上行 {out}"
+  no-players: "&7当前没有在线玩家，流量按 0 统计。"
+  no-channel: "&e未接入任何玩家通道（该服务端可能改动了 Netty 结构），当前只能按 0 统计。"
+
+top:
+  header: "&8&m--------&r &b延迟 Top {size} &8&m--------"
+  entry-good: "&7#{rank} &f{player} &8- &a{ping} ms"
+  entry-medium: "&7#{rank} &f{player} &8- &e{ping} ms"
+  entry-bad: "&7#{rank} &f{player} &8- &c{ping} ms"
+  entry-unknown: "&7#{rank} &f{player} &8- &7延迟未知"
+  empty: "&7当前没有在线玩家。"
+
+tps:
+  header: "&8&m--------&r &bTPS &8&m--------"
+  label-1m: "1 分钟"
+  label-5m: "5 分钟"
+  label-15m: "15 分钟"
+  line: "&7{label}: {color}{value}"
+  warming: "&7{label}: &8采样中 &7({seconds} 秒)"
+  collecting: "&7TPS: &8还在采样，稍后再试"
+  native-missing: "&7TPS: &8当前服务端没有 TPS 接口"
+  mspt: "&7MSPT: {color}{value} ms"
+
+cpu:
+  header: "&8&m--------&r &bCPU &8&m--------"
+  label-process: "进程 CPU"
+  label-system: "系统 CPU"
+  process: "&7进程 CPU: {color}{value}%"
+  system: "&7系统 CPU: {color}{value}%"
+  cores: "&7处理器: &f{value} 核"
+  load: "&7系统负载: &f{value}"
+  unavailable: "&7{label}: &8不可用"
+
+mem:
+  header: "&8&m--------&r &b内存 &8&m--------"
+  heap: "&7堆内存: {color}{used} &7/ &f{max} &8({color}{percent}%&8)"
+  nonheap: "&7非堆内存: &f{used}"
+  physical: "&7物理内存: &f{used} &7/ &f{total} &8({percent}%&8)"
+
+gc:
+  header: "&8&m--------&r &bGC &8&m--------"
+  entry: "&7{name}: &f{count} 次 &7/ &f{time} ms"
+  total: "&7合计: &f{count} 次 &7/ &f{time} ms &8({percent}% 运行时间&8)"
+
+thread:
+  header: "&8&m--------&r &b线程 &8&m--------"
+  live: "&7活跃线程: &f{value}"
+  peak: "&7峰值线程: &f{value}"
+  daemon: "&7守护线程: &f{value}"
+  started: "&7累计创建: &f{value}"
+
+entity:
+  header: "&8&m--------&r &b实体 &8&m--------"
+  total: "&7实体总数: &f{value}"
+  category: "&7全服分类: &c怪物 {monster} &7| &a动物 {animals} &7| &b水生 {water} &7| &e村民 {villager} &7| &7其他 {other}"
+  world: "&7{world}: &f{total} &8(&c怪 {monster} &8/ &a动物 {animals} &8/ &7其他 {other}&8)"
+  more-worlds: "&7……其余 &f{count} &7个世界未显示"
+
+chunk:
+  header: "&8&m--------&r &b区块 &8&m--------"
+  total: "&7已加载区块: &f{value}"
+  world: "&7{world}: &f{value}"
+
+info:
+  header: "&8&m--------&r &b服务器信息 &8&m--------"
+  server: "&7服务端: &f{name}"
+  version: "&7版本: &f{version}"
+  bukkit: "&7Bukkit: &f{version}"
+  players: "&7在线: &f{online} &7/ &f{max}"
+  worlds: "&7世界: &f{worlds} &7| &7插件: &f{plugins}"
+  uptime: "&7运行时长: &f{value}"
+  java: "&7JVM: &f{version} &8({vendor}&8)"
+
+env:
+  header: "&8&m--------&r &b运行环境 &8&m--------"
+  java: "&7Java: &f{version} &8({vendor}&8)"
+  vm: "&7虚拟机: &f{name} &8({version}&8)"
+  os: "&7系统: &f{name} &8({arch}&8) &f{version}"
+  cores: "&7CPU 核心: &f{value}"
+  misc: "&7编码: &f{encoding} &7| &7时区: &f{timezone}"
+  dir: "&7服务器目录: &f{value}"
+
+disk:
+  header: "&8&m--------&r &b磁盘 &8&m--------"
+  root: "&7{root} &8可用 {color}{free} &8/ &f{total} &8({percent}% 已用&8)"
+  data: "&7服务器目录: &f{path}"
+
+check:
+  header: "&8&m--------&r &b巡检 &8&m--------"
+  ok: "&a√"
+  warn: "&e!"
+  fail: "&c×"
+  item: "{status} &7{label}: &f{value}"
+  threshold: "&8(阈值 {value}&8)"
+  collecting: "采样中"
+  label-tps: "TPS"
+  label-memory: "内存"
+  label-disk: "磁盘"
+  label-free: "可用"
+  label-chunk: "区块"
+  label-entity: "实体"
+  label-thread: "线程"
+  label-gc: "GC 占比"
+  summary-ok: "&a未发现异常，共检查 {count} 项。"
+  summary-warn: "&e发现 {count} 项需要关注。"
